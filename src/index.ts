@@ -1,6 +1,6 @@
 const { chromium } = require('playwright-core');
 
-export default class Encharge
+export class Encharge
 {
   private browser : any
   private page : any
