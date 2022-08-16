@@ -37,7 +37,7 @@ export class Encharge
     ]);
   }
 
-  public async createEmail(name: string, subject: string, content: string)
+  public async createEmail(email_name: string, from_name: string, subject: string, content: string)
   {
     await this.page.goto('https://app.encharge.io/emails?emails-folder-item=allEmails');
     await this.page.waitForTimeout(500);
@@ -55,7 +55,12 @@ export class Encharge
 
     // Email name
     await this.page.click('[placeholder="Enter email name"]');
-    await this.page.fill('[placeholder="Enter email name"]', name);
+    await this.page.fill('[placeholder="Enter email name"]', email_name);
+    await this.page.waitForTimeout(500);
+
+    // From name
+    await this.page.click('[id="from-name"]');
+    await this.page.fill('[id="from-name"]', from_name);
     await this.page.waitForTimeout(500);
 
     // Subject
