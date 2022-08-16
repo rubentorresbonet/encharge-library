@@ -7,11 +7,19 @@ export class Encharge
 
   constructor(){}
 
-  public async start(headless: boolean = true)
+  public async start(custom_cdp: string = "", headless: boolean = true)
   {
-    this.browser = await chromium.launch({headless: headless});
+    if (custom_cdp != "")
+    {
+      this.browser = await chromium.connectOverCDP(custom_cdp)
+    }
+    else
+    {
+      this.browser = await chromium.launch({headless: headless})
+    }
     this.page = await this.browser.newPage();
   }
+
 
   public async finish()
   {
