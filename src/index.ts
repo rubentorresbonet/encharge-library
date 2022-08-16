@@ -37,7 +37,7 @@ export class Encharge
     ]);
   }
 
-  public async createEmail(email_name: string, from_name: string, subject: string, content: string)
+  public async createEmail(email_name: string, from_name: string, from_email_option: number, subject: string, content: string)
   {
     await this.page.goto('https://app.encharge.io/emails?emails-folder-item=allEmails');
     await this.page.waitForTimeout(500);
@@ -66,6 +66,11 @@ export class Encharge
     // Subject
     await this.page.click('[value="No Subject"]');
     await this.page.fill('[value="No Subject"]', subject);
+    await this.page.waitForTimeout(500);
+
+    // From email
+    await this.page.click('text=From email: >> svg');
+    await this.page.click('#react-select-2-option-' + from_email_option);
     await this.page.waitForTimeout(500);
   
     // Click text=Save
