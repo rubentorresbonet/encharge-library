@@ -70,6 +70,7 @@ export class Encharge
 
     // From email
     await this.page.click('[id=from-address-select-container] >> svg');
+    await this.page.waitForTimeout(1000);
     await this.page.click('#react-select-2-option-' + from_email_option);
     await this.page.waitForTimeout(500);
   
